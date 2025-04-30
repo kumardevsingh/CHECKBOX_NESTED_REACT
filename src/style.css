@@ -1,0 +1,45 @@
+/* reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+/* reset ul li */
+ul {
+    list-style: none;
+}
+
+
+body{
+    background-color: black;
+    color:#FFF;
+    font-family: Arial, sans-serif;
+}
+
+.checkboxGroup {
+    display: flex;
+    flex-direction: column;
+    padding: 10px 0px 10px 20px;
+    background-color: #333;
+    max-width: 400px;
+    position: relative;
+}
+
+
+.checkboxItem {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+}
+.checkboxItem input[type="checkbox"] {
+    margin-right: 10px;
+    height: 30px;
+    width: 30px;
+}
+.checkboxItem label {
+    cursor: pointer;
+    font-size: larger;
+}
+.checkboxItem label span {
+    font-weight: bold;
+}
