@@ -53,26 +53,27 @@ const CheckBoxes = ({ data, checked, setChecked }) => {
   const onChangeHandle = (isChecked, node) => {
     setChecked((prevState) => {
       const newCheckedState = { ...prevState, [node.id]: isChecked };
-      const updateChildren = (node) => {
+
+      const updateChildren = (node, isChecked) => {
         if (node.children) {
           node.children.forEach((child) => {
             newCheckedState[child.id] = isChecked;
-            child.children && updateChildren(child);
+            updateChildren(child, isChecked);
           });
         }
       };
-      updateChildren(node);
 
-      const verifyAllChildrenChecked = (node) => {
+      const updateParent = (node) => {
         if (!node.children) return newCheckedState[node.id] || false;
         const allChildrenChecked = node.children.every((child) =>
-          verifyAllChildrenChecked(child)
+          updateParent(child)
         );
         newCheckedState[node.id] = allChildrenChecked;
         return allChildrenChecked;
       };
 
-      checkboxData.forEach((node) => verifyAllChildrenChecked(node));
+      updateChildren(node, isChecked);
+      checkboxData.forEach(updateParent);
 
       return newCheckedState;
     });
